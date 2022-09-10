@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # apps created
-    'customadmin',
+    'ogadmin',
     'user',
     'art',
     

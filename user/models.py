@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
-# Create your models here.
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
@@ -23,8 +22,8 @@ class UserManager(BaseUserManager):
         user.is_admin = True
         user.save(using=self._db)
         return user
-    
-# 커스텀 유저 모델
+
+
 class User(AbstractBaseUser):
     email = models.EmailField("이메일", max_length=50, unique=True)
     nickname = models.CharField("닉네임", max_length=10, unique=True)
@@ -47,9 +46,7 @@ class User(AbstractBaseUser):
     # 실제 로그인에 사용되는 아이디
     USERNAME_FIELD = 'email'
 
-    # 어드민 계정을 만들 때 입력받을 정보 ex) email
-    # 사용하지 않더라도 선언이 되어야함
-    # USERNAME_FIELD와 비밀번호는 기본적으로 포함되어있음
+    # admin 계정을 만들 때 입력받을 정보 ex) email
     REQUIRED_FIELDS = []
 
     # custom user 생성 시 필요
@@ -70,3 +67,4 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+    
